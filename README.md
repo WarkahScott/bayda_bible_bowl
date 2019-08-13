@@ -22,7 +22,7 @@ Coming Soon.
 * Android Studio
 
 ## Setup
-Install the .apk file included here or build it from the source code.
+Install [app-release.apk](build/app/outputs/apk/release/app-release.apk) to a device or build it from the source code.
 
 ## Features
 Current features:
