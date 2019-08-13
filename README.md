@@ -1,16 +1,38 @@
-# bayda_bible_bowl
+# Bible Bowl Companion
+> A BAYDA Bible Bowl study companion.
 
-A new Flutter application.
+## Table of Contents
+* [General Info](#general-info)
+* [Screenshots](#screenshots)
+* [Technologies](#technologies)
+* [Setup](#setup)
+* [Features](#features)
+* [Status](#status)
+* [Contact](#contact)
 
-## Getting Started
+## General Info
+This project was started to create an alternate study experience to Quizlet for BAYDA Bible Bowl.
 
-This project is a starting point for a Flutter application.
+## Screenshots
+Coming Soon.
 
-A few resources to get you started if this is your first Flutter project:
+## Technologies
+* Flutter
+* Dart
+* Android Studio
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Setup
+Install the .apk file included here or build it from the source code.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Features
+Current features:
+
+
+To-do list:
+* Finish UI
+
+## Status
+_Currently in progress_
+
+## Contact
+Created by [Warkah Scott](https://www.linkedin.com/in/warkahscott/) - feel free to contact me!
