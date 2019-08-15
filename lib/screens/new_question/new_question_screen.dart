@@ -1,8 +1,10 @@
-import 'package:flutter/material.dart';
-
 import 'package:bayda_bible_bowl/utils/menu.dart';
+import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import 'answer_section.dart';
 import 'dropdown_section.dart';
+import 'radio_section.dart';
 
 class NewQuestion extends StatefulWidget {
   @override
@@ -11,7 +13,11 @@ class NewQuestion extends StatefulWidget {
 
 class _NewQuestionState extends State<NewQuestion> {
 
-  DropdownSection dropdown = DropdownSection();
+  RadioSection _radio = RadioSection();
+  QuestionSection _question = QuestionSection();
+  AnswerSection _answer = AnswerSection();
+  DropdownSection _dropdown = DropdownSection();
+  ButtonSection _button = ButtonSection();
 
   @override
   Widget build(BuildContext context) {
@@ -24,16 +30,14 @@ class _NewQuestionState extends State<NewQuestion> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              RadioSection(),
-              QuestionSection(),
-              AnswerSection(),
-              dropdown,
-              //ButtonSection()
-              FlatButton(
-                color: Colors.blueAccent,
-                child: Text("Submit"),
-                onPressed: () => {print(dropdown.reference)},
-              )
+              _radio,
+              _question,
+              ChangeNotifierProvider(
+                  builder:(context) => _radio,
+                  child: _answer,
+              ),
+              _dropdown,
+              _button
             ],
           )
       ),
@@ -41,19 +45,19 @@ class _NewQuestionState extends State<NewQuestion> {
   }
 }
 
-//class ButtonSection extends Row {
-//  ButtonSection() : super(
-//      mainAxisSize: MainAxisSize.max,
-//      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-//      children: <Widget>[
-//        FlatButton(
-//          color: Colors.blueAccent,
-//          child: Text("Submit"),
-//          onPressed: () => {print()},
-//        )
-//      ]
-//  );
-//}
+class ButtonSection extends Row {
+  ButtonSection() : super(
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: <Widget>[
+        FlatButton(
+          color: Colors.blueAccent,
+          child: Text("Submit"),
+          onPressed: () => {print("tst")},
+        )
+      ]
+  );
+}
 
 class QuestionSection extends Row {
   QuestionSection() : super(
@@ -72,71 +76,3 @@ class QuestionSection extends Row {
   );
 }
 
-class AnswerSection extends Row {
-  AnswerSection() : super(
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: <Widget>[
-      Expanded(
-        child: Card(
-            margin: EdgeInsets.all(30),
-            child: Center(
-              child: Text("Answer"),
-            )
-        ),
-      ),
-    ],
-  );
-}
-
-class RadioSection extends Row {
-  RadioSection() : super(
-      mainAxisSize: MainAxisSize.min,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        Radio<String>(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          value: "Q/A",
-          groupValue: "txt",
-          onChanged: null,
-        ),
-        Text('Q/A', textAlign: TextAlign.left),
-        Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
-
-        Radio<String>(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          value: "FTV",
-          groupValue: "txt",
-          onChanged: null,
-        ),
-        Text('FTV'),
-        Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
-
-        Radio<String>(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          value: "FIB",
-          groupValue: "txt",
-          onChanged: null,
-        ),
-        Text('FIB'),
-        Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
-
-        Radio<String>(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          value: "T/F",
-          groupValue: "txt",
-          onChanged: null,
-        ),
-        Text('T/F'),
-        Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
-
-        Radio<String>(
-          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-          value: "REF",
-          groupValue: "txt",
-          onChanged: null,
-        ),
-        Text('REF'),
-      ]
-  );
-}

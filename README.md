@@ -14,7 +14,7 @@
 This project was started to create an alternate study experience to Quizlet for BAYDA Bible Bowl.
 
 ## Screenshots
-Coming Soon.
+![Application demo](./img/sample_081519.gif)
 
 ## Technologies
 * Flutter

@@ -21,6 +21,7 @@ class _DropdownSectionState extends State<DropdownSection> {
   String _verse;
 
   List<String> get reference => <String>[_book, _chapter, _verse];
+  List<String> sample = ["Sample 1", "Sample 2","Sample 3","Sample 4"];
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +32,7 @@ class _DropdownSectionState extends State<DropdownSection> {
           new DropdownButton<String>(
               hint: Text("Book"),
               value: _book,
-              items: <String>["Horly", "Evercvtfytfdrs"].map((String value) {
+              items: sample.map((String value) {
                 return new DropdownMenuItem <String>(
                     value: value,
                     child: new FittedBox(
@@ -43,7 +44,7 @@ class _DropdownSectionState extends State<DropdownSection> {
           new DropdownButton<String>(
               hint: Text("Chapter"),
               value: _chapter,
-              items: <String>["Horly", "deuteronomy"].map((String value) {
+              items: sample.map((String value) {
                 return new DropdownMenuItem <String>(
                     value: value,
                     child: new Text(value, overflow: TextOverflow.ellipsis,)
@@ -54,7 +55,7 @@ class _DropdownSectionState extends State<DropdownSection> {
           new DropdownButton<String>(
               hint: Text("Verse"),
               value: _verse,
-              items: <String>["Horly", "deuteronomy"].map((String value) {
+              items: sample.map((String value) {
                 return new DropdownMenuItem <String>(
                     value: value,
                     child: new Text(value, overflow: TextOverflow.ellipsis,)
