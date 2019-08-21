@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class RadioSection extends StatefulWidget with ChangeNotifier {
   final _state = _RadioSectionState();
 
-  String get value => _state.value;
+  String get value => _state._value;
 
   @override
   State<StatefulWidget> createState() => _state;
@@ -13,9 +13,7 @@ class RadioSection extends StatefulWidget with ChangeNotifier {
 }
 
 class _RadioSectionState extends State<RadioSection> {
-  String _value;
-
-  String get value => _value;
+  String _value = "Q/A";
 
   _changeType(String value) {
     setState(() {

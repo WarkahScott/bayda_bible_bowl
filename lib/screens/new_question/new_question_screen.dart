@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import 'answer_section.dart';
 import 'dropdown_section.dart';
+import 'question_section.dart';
 import 'radio_section.dart';
 
 class NewQuestion extends StatefulWidget {
@@ -32,12 +33,22 @@ class _NewQuestionState extends State<NewQuestion> {
             children: <Widget>[
               _radio,
               _question,
-              ChangeNotifierProvider(
-                  builder:(context) => _radio,
-                  child: _answer,
+              MultiProvider(
+                providers: [
+                  ChangeNotifierProvider.value(value: _radio),
+                  ChangeNotifierProvider.value(value: _dropdown),
+                ],
+                child: _answer,
               ),
               _dropdown,
-              _button
+              MultiProvider(
+                providers: [
+                  ListenableProvider.value(value: _radio),
+                  Provider.value(value: _answer),
+                  ListenableProvider.value(value: _dropdown),
+                ],
+                child: _button,
+              ),
             ],
           )
       ),
@@ -45,34 +56,26 @@ class _NewQuestionState extends State<NewQuestion> {
   }
 }
 
-class ButtonSection extends Row {
-  ButtonSection() : super(
-      mainAxisSize: MainAxisSize.max,
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: <Widget>[
-        FlatButton(
-          color: Colors.blueAccent,
-          child: Text("Submit"),
-          onPressed: () => {print("tst")},
-        )
-      ]
-  );
-}
+class ButtonSection extends StatelessWidget {
 
-class QuestionSection extends Row {
-  QuestionSection() : super(
-    mainAxisSize: MainAxisSize.max,
-    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-    children: <Widget>[
-      Expanded(
-        child: Card(
-          margin: EdgeInsets.all(30),
-          child: Center(
-            child: Text("Question"),
+  @override
+  Widget build(BuildContext context) {
+
+    final _radio = Provider.of<RadioSection>(context);
+    final _answer = Provider.of<AnswerSection>(context);
+    final _dropdown = Provider.of<DropdownSection>(context);
+
+    return Row(
+        mainAxisSize: MainAxisSize.max,
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: <Widget>[
+          FlatButton(
+            color: Colors.blueAccent,
+            child: Text("Submit"),
+            onPressed: () => {print("type: ${_radio.value}   ans: ${_answer.value}    ref: ${_dropdown.value}")},
           )
-        ),
-      ),
-    ],
-  );
+        ]
+    );
+  }
 }
 

@@ -1,17 +1,15 @@
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
-class DropdownSection extends StatefulWidget {
-  List<String> _reference;
+class DropdownSection extends StatefulWidget with ChangeNotifier{
+
+  final _DropdownSectionState _state = _DropdownSectionState();
+
+  List<String> get value => _state.reference;
+  void notify() => notifyListeners();
 
   @override
-  _DropdownSectionState createState(){
-    _DropdownSectionState state = _DropdownSectionState();
-    _reference = state.reference;
-    return state;
-  }
-
-  List<String> get reference => _reference;
+  _DropdownSectionState createState() => _state;
 }
 
 class _DropdownSectionState extends State<DropdownSection> {
@@ -22,6 +20,17 @@ class _DropdownSectionState extends State<DropdownSection> {
 
   List<String> get reference => <String>[_book, _chapter, _verse];
   List<String> sample = ["Sample 1", "Sample 2","Sample 3","Sample 4"];
+
+  _update(int field, String value){
+    setState(() {
+      switch(field){
+        case 0: _book = value; break;
+        case 1: _chapter = value; break;
+        case 2: _verse = value; break;
+      }
+      widget.notify();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +48,7 @@ class _DropdownSectionState extends State<DropdownSection> {
                       child: new Text(value, overflow: TextOverflow.ellipsis,),)
                 );
               }).toList(),
-              onChanged: (value) => setState(() {_book = value; widget._reference = reference;})
+              onChanged: (value) => _update(0, value)
           ),
           new DropdownButton<String>(
               hint: Text("Chapter"),
@@ -50,7 +59,7 @@ class _DropdownSectionState extends State<DropdownSection> {
                     child: new Text(value, overflow: TextOverflow.ellipsis,)
                 );
               }).toList(),
-              onChanged: (value) => setState(() {_chapter = value; widget._reference = reference;})
+              onChanged: (value) => _update(1, value)
           ),
           new DropdownButton<String>(
               hint: Text("Verse"),
@@ -61,7 +70,7 @@ class _DropdownSectionState extends State<DropdownSection> {
                     child: new Text(value, overflow: TextOverflow.ellipsis,)
                 );
               }).toList(),
-              onChanged: (value) => setState(() {_verse = value; widget._reference = reference;})
+              onChanged: (value) => _update(2, value)
           ),
         ]
     );
