@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'answer_section.dart';
+import 'button_section.dart';
 import 'dropdown_section.dart';
 import 'question_section.dart';
 import 'radio_section.dart';
@@ -44,6 +45,7 @@ class _NewQuestionState extends State<NewQuestion> {
               MultiProvider(
                 providers: [
                   ListenableProvider.value(value: _radio),
+                  Provider.value(value: _question),
                   Provider.value(value: _answer),
                   ListenableProvider.value(value: _dropdown),
                 ],
@@ -55,27 +57,3 @@ class _NewQuestionState extends State<NewQuestion> {
     );
   }
 }
-
-class ButtonSection extends StatelessWidget {
-
-  @override
-  Widget build(BuildContext context) {
-
-    final _radio = Provider.of<RadioSection>(context);
-    final _answer = Provider.of<AnswerSection>(context);
-    final _dropdown = Provider.of<DropdownSection>(context);
-
-    return Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          FlatButton(
-            color: Colors.blueAccent,
-            child: Text("Submit"),
-            onPressed: () => {print("type: ${_radio.value}   ans: ${_answer.value}    ref: ${_dropdown.value}")},
-          )
-        ]
-    );
-  }
-}
-
