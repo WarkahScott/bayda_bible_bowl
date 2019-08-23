@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
 
-class QuestionSection extends StatefulWidget {
+// ignore: must_be_immutable
+class QuestionSection extends StatefulWidget with ChangeNotifier {
   final _state = _QuestionSectionState();
 
   String get value => _state._value;
 
   @override
   State<StatefulWidget> createState() => _state;
+
+  void _notify() => notifyListeners();
 }
 
 class _QuestionSectionState extends State<QuestionSection> {
-  String _value;
+  String _value = "";
 
   _update(String text){
     setState(() {
       _value = text;
+      widget._notify();
     });
   }
 
