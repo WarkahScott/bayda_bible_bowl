@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../shared_widgets/dropdown_section.dart';
 import '../answer_section.dart';
-import '../dropdown_section.dart';
 
 class AnswerREF extends StatefulWidget {
 
@@ -42,7 +42,12 @@ class _AnswerREFState extends State<AnswerREF> {
           child: Card(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Center(
-                child: Text(_value),
+                  child: Container(
+                    alignment: Alignment(0, 0),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 10,
+                    child: Text(_value),
+                  )
               )
           ),
         ),

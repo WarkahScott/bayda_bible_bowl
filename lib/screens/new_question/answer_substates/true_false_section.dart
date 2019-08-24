@@ -40,24 +40,29 @@ class _AnswerTFState extends State<AnswerTF> {
           child: Card(
               margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Center(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Radio<bool>(
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          value: true,
-                          groupValue: _status,
-                          onChanged: (value) => _switch(value)),
-                      Text('True', textAlign: TextAlign.left),
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
-                      Radio<bool>(
-                          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                          value: false,
-                          groupValue: _status,
-                          onChanged: (value) => _switch(value)),
-                      Text('False', textAlign: TextAlign.left),
-                      Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
-                    ],
+                  child: Container(
+                    alignment: Alignment(0, 0),
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 10,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Radio<bool>(
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            value: true,
+                            groupValue: _status,
+                            onChanged: (value) => _switch(value)),
+                        Text('True', textAlign: TextAlign.left),
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 30.0)),
+                        Radio<bool>(
+                            materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                            value: false,
+                            groupValue: _status,
+                            onChanged: (value) => _switch(value)),
+                        Text('False', textAlign: TextAlign.left),
+                        Padding(padding: EdgeInsets.symmetric(horizontal: 4.0)),
+                      ],
+                    ),
                   )
               )
           ),

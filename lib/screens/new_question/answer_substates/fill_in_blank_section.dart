@@ -54,7 +54,7 @@ class _AnswerFIBState extends State<AnswerFIB> {
                   child: Container(
                     alignment: Alignment(0, 0),
                     width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 5,
+                    height: MediaQuery.of(context).size.height / 10,
                     child: Text(_extractBlanks()),
                   )
               )

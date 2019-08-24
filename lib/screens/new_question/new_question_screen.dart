@@ -2,9 +2,9 @@ import 'package:bayda_bible_bowl/utils/menu.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../shared_widgets/dropdown_section.dart';
 import 'answer_section.dart';
 import 'button_section.dart';
-import 'dropdown_section.dart';
 import 'question_section.dart';
 import 'radio_section.dart';
 

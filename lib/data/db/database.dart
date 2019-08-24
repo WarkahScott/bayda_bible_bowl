@@ -29,7 +29,11 @@ class Questions extends Table {
 
 @UseMoor(tables: [Books, Chapters, Questions])
 class Database extends _$Database{
-  Database() : super(FlutterQueryExecutor.inDatabaseFolder(path: 'db.sqlite'));
+  Database() : super(FlutterQueryExecutor.inDatabaseFolder(
+      path: 'db.sqlite',
+      logStatements: true,
+    )
+  );
 
   @override
   int get schemaVersion => 2;
