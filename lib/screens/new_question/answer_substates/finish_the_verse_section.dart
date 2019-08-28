@@ -24,18 +24,19 @@ class _AnswerFTVState extends State<AnswerFTV> {
     final _question = Provider.of<QuestionSection>(context);
 
     _state.subState = widget;
-    _value = _question.value;
 
-    String _extractBlank(){
+    String _extractBlank(String value){
       String ans = "";
       RegExp pattern = RegExp("[(][^)]*[)]");
-      RegExpMatch match = pattern.firstMatch(_value);
+      RegExpMatch match = pattern.firstMatch(value);
       if(match == null)
         return "";
 
-      ans = _value.substring(match.start + 1, match.end -1);
+      ans = value.substring(match.start + 1, match.end -1);
       return ans;
     }
+
+    _value = _extractBlank(_question.value);
 
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -49,7 +50,15 @@ class _AnswerFTVState extends State<AnswerFTV> {
                     alignment: Alignment(0, 0),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 10,
-                    child: Text(_extractBlank()),
+                    child: TextField(
+                      controller: TextEditingController()..text = _value,
+                      readOnly: true,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Surround (blank) with parentheses.",
+                      ),
+                    ),
                   )
               )
           ),

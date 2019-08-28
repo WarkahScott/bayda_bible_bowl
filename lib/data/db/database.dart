@@ -3,22 +3,9 @@ import 'package:moor_flutter/moor_flutter.dart';
 
 part 'database.g.dart';
 
-@DataClassName("Book")
-class Books extends Table {
-  IntColumn get id => integer().autoIncrement()();
-  TextColumn get name => text()();
-  IntColumn get chapters => integer()();
-}
-
-@DataClassName("ChapterInfo")
-class Chapters extends Table {
-  TextColumn get name => text()();
-  IntColumn get chapter => integer()();
-  IntColumn get verses => integer()();
-}
-
 @DataClassName("Question")
 class Questions extends Table {
+  IntColumn get id => integer().autoIncrement()();
   TextColumn get question => text()();
   TextColumn get answer => text()();
   TextColumn get book => text()();
@@ -27,7 +14,7 @@ class Questions extends Table {
   TextColumn get type => text()();
 }
 
-@UseMoor(tables: [Books, Chapters, Questions])
+@UseMoor(tables: [Questions], daos: [QuestionDao])
 class Database extends _$Database{
   Database() : super(FlutterQueryExecutor.inDatabaseFolder(
       path: 'db.sqlite',
@@ -36,5 +23,14 @@ class Database extends _$Database{
   );
 
   @override
-  int get schemaVersion => 2;
+  int get schemaVersion => 5;
+}
+
+@UseDao(tables: [Questions])
+class QuestionDao extends DatabaseAccessor<Database> with _$QuestionDaoMixin{
+  final Database db;
+
+  QuestionDao(this.db) : super(db);
+
+  Future<List<Question>> getAllQuestions() => select(questions).get();
 }

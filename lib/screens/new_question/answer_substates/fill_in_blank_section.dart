@@ -24,24 +24,25 @@ class _AnswerFIBState extends State<AnswerFIB> {
     final _question = Provider.of<QuestionSection>(context);
 
     _state.subState = widget;
-    _value = _question.value;
 
-    String _extractBlanks(){
+    String _extractBlanks(String value){
       String ans = "";
       RegExp pattern = RegExp("[(][^)]*[)]");
-      Iterable<RegExpMatch> matches = pattern.allMatches(_value);
+      Iterable<RegExpMatch> matches = pattern.allMatches(value);
 
       if(matches == null || matches.isEmpty)
         return "";
 
       for(RegExpMatch r in matches)
       {
-        String match = _value.substring(r.start + 1, r.end - 1);
+        String match = value.substring(r.start + 1, r.end - 1);
         ans = "$ans $match,";
       }
 
       return ans.substring(0, ans.length - 1);
     }
+
+    _value = _extractBlanks(_question.value);
 
     return Row(
       mainAxisSize: MainAxisSize.max,
@@ -55,7 +56,15 @@ class _AnswerFIBState extends State<AnswerFIB> {
                     alignment: Alignment(0, 0),
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height / 10,
-                    child: Text(_extractBlanks()),
+                    child: TextField(
+                      controller: TextEditingController()..text = _value,
+                      readOnly: true,
+                      textAlign: TextAlign.center,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Surround (blanks) with parentheses.",
+                      ),
+                    ),
                   )
               )
           ),

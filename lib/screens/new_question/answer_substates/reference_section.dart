@@ -1,3 +1,4 @@
+import 'package:bayda_bible_bowl/data/db/bible_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,10 +30,10 @@ class _AnswerREFState extends State<AnswerREF> {
     _state.subState = widget;
 
     List<String> _reference = dropdown.value;
-    _book = (_reference[0] ?? "null").substring(0, 3);
+    _book = Bible.bookMap[_reference[0]].abbreviation;
     _chapter = _reference[1] ?? "null";
     _verse = _reference[2] ?? "null";
-    _value = "$_book. $_chapter: $_verse";
+    _value = "$_book. $_chapter : $_verse";
 
     return Row(
       mainAxisSize: MainAxisSize.max,

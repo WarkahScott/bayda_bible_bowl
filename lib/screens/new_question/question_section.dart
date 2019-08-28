@@ -41,7 +41,10 @@ class _QuestionSectionState extends State<QuestionSection> {
                   textAlign: TextAlign.center,
                   textAlignVertical: TextAlignVertical.center,
                   onChanged: (text) => _update(text),
-                  decoration: null,
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Enter question here.",
+                  ),
                 ),
               )
             )
