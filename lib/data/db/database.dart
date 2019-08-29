@@ -33,4 +33,8 @@ class QuestionDao extends DatabaseAccessor<Database> with _$QuestionDaoMixin{
   QuestionDao(this.db) : super(db);
 
   Future<List<Question>> getAllQuestions() => select(questions).get();
+  Stream<List<Question>> watchAllQuestions() => select(questions).watch();
+  Future insertQuestion(Insertable<Question> question) => into(questions).insert(question);
+  Future deleteQuestion(Insertable<Question> question) => delete(questions).delete(question);
+
 }

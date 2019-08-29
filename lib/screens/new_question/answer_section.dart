@@ -31,6 +31,9 @@ class AnswerSectionState extends State<AnswerSection> {
       return (subState as AnswerQA).value;
     if(subState is AnswerFIB)
       return (subState as AnswerFIB).value;
+    if(subState is AnswerFTV)
+      return (subState as AnswerFTV).value;
+
     return "Invalid";
   }
 

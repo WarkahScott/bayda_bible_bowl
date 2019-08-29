@@ -2,7 +2,7 @@ import 'package:bayda_bible_bowl/data/db/bible_data.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../shared_widgets/dropdown_section.dart';
+import '../../../utils/dropdown_section.dart';
 import '../answer_section.dart';
 
 class AnswerREF extends StatefulWidget {
