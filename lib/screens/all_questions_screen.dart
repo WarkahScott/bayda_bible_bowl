@@ -6,7 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
 
+
 class AllQuestions extends StatelessWidget {
+  DropdownSectionShort _filter = DropdownSectionShort();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,10 +21,15 @@ class AllQuestions extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            DropdownSectionShort(),
+            _filter,
             Container(
               height: MediaQuery.of(context).size.height * .75,
-              child: _buildQuestionList(context),
+              child: ChangeNotifierProvider(
+                builder: (_) => _filter,
+                child: Consumer<DropdownSectionShort>(
+                  builder: (_, _filter, __) => _buildQuestionList(_),
+                ),
+              )
             ),
           ],
         ),
@@ -33,8 +41,16 @@ class AllQuestions extends StatelessWidget {
 StreamBuilder<List<Question>> _buildQuestionList(BuildContext context){
 
   final dao = Provider.of<QuestionDao>(context);
+  final filter = Provider.of<DropdownSectionShort>(context);
+
+  String book = filter.value[0];
+  String chapter = filter.value[1];
+
+  final stream = (book == "(ALL)") ?
+    dao.watchAllQuestions() : dao.watchFilteredQuestions(book, chapter);
+
   return StreamBuilder(
-    stream: dao.watchAllQuestions(),
+    stream: stream,
     builder: (context, AsyncSnapshot<List<Question>> snapshot){
       final questions = snapshot.data ?? List();
 
@@ -63,7 +79,7 @@ Widget _buildListItem(Question question, QuestionDao dao){
       ),
       trailing: Text(
         """${question.type}
-        ${Bible.bookMap[question.book].abbreviation}. ${question.chapter} : ${question.verse}""",
+        ${Bible.bookFilter[question.book].abbreviation}. ${question.chapter} : ${question.verse}""",
         textAlign: TextAlign.right,
       ),
       onTap: () {},

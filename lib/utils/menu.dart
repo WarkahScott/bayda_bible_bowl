@@ -32,7 +32,7 @@ class MenuItem extends StatelessWidget {
         FlatButton.icon(
           icon: Icon(_icon),
           label: Text(_title),
-          onPressed: () => Navigator.of(context).popAndPushNamed(_route),
+          onPressed: () => Navigator.of(context).pushReplacementNamed(_route),
         ),
         Divider(),
       ],

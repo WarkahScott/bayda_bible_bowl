@@ -30,7 +30,7 @@ class _AnswerREFState extends State<AnswerREF> {
     _state.subState = widget;
 
     List<String> _reference = dropdown.value;
-    _book = Bible.bookMap[_reference[0]].abbreviation;
+    _book = Bible.bookList[_reference[0]].abbreviation;
     _chapter = _reference[1] ?? "null";
     _verse = _reference[2] ?? "null";
     _value = "$_book. $_chapter : $_verse";

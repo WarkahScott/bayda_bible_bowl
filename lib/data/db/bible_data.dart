@@ -1,5 +1,5 @@
 enum Books{
-  Genesis, Exodus, Leviticus, Numbers, Deuteronomy,
+  All, Genesis, Exodus, Leviticus, Numbers, Deuteronomy,
   Joshua, Judges, Ruth, Samuel1, Samuel2, Kings1,
   Kings2, Chronicles1, Chronicles2, Ezra, Nehemiah,
   Esther, Job, Psalms, Proverbs, Ecclesiastes,
@@ -15,6 +15,7 @@ enum Books{
 }
 
 const Map<Books, Book> BIBLE = {
+  Books.All : const Book("(ALL)", null, []),
   Books.Genesis : const Book("Genesis", 50, []),
   Books.Exodus : const Book("Exodus", 40, []),
   Books.Leviticus : const Book("Leviticus", 27, []),
@@ -96,5 +97,10 @@ class Book{
 }
 
 class Bible{
-  static Map<String, Book> bookMap = Map.fromIterables(BIBLE.values.map((book) => book.book), BIBLE.values);
+  static final _bookList = BIBLE.values.toList().sublist(1);
+  static final _bookFilter = BIBLE.values;
+
+
+  static Map<String, Book> bookList = Map.fromIterables(_bookList.map((book) => book.book), _bookList);
+  static Map<String, Book> bookFilter = Map.fromIterables(_bookFilter.map((book) => book.book), _bookFilter);
 }

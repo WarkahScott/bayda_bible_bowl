@@ -18,26 +18,45 @@ class _DropdownSectionShortState extends State<DropdownSectionShort> {
 
   String _book = "Genesis";
   String _chapter = "1";
-  String _verse = "1";
 
-  List<String> get reference => <String>[_book, _chapter, _verse];
-  List<String> sample = ["Sample 1", "Sample 2","Sample 3","Sample 4"];
-  Map<String, Book> books = Bible.bookMap;
-  List<int> chapters = [1];
-  List<int> verses = [1];
+  List<String> get reference => <String>[_book, _chapter];
+  Map<String, Book> books = Bible.bookFilter;
+  List<int> chapters = new List<int>.generate(Bible.bookFilter["Genesis"].chapters, (i) => i + 1);
 
   _update(int field, String value){
     setState(() {
       switch(field){
-        case 0: _book = value; _chapter = "1"; _verse = "1";
-        chapters = new List<int>.generate(books[_book].chapters, (i) => i + 1);
+        case 0: if(value != "(ALL)"){
+            _book = value;
+            _chapter = "1";
+            chapters = new List<int>.generate(books[_book].chapters, (i) => i + 1);
+          }
+          else{
+            _book = "(ALL)";
+            _chapter = "(ALL)";
+            chapters = new List<int>();
+          }
         break;
-        case 1: _chapter = value; _verse = "1";
+        case 1: _chapter = value;
         break;
-        case 2: _verse = value; break;
       }
       widget.notify();
     });
+  }
+
+  _checkChapters(){
+    if(chapters.isEmpty)
+      return [new DropdownMenuItem <String>(
+          value: "(ALL)",
+          child: new Text("-", overflow: TextOverflow.ellipsis,)
+      )];
+
+    return chapters.map((value) {
+      return new DropdownMenuItem <String>(
+          value: value.toString(),
+          child: new Text(value.toString(), overflow: TextOverflow.ellipsis,)
+      );
+    }).toList();
   }
 
   @override
@@ -66,12 +85,7 @@ class _DropdownSectionShortState extends State<DropdownSectionShort> {
             child: new CustomDropdownButton<String>(
                 hint: Text("Chapter"),
                 value: _chapter,
-                items: chapters.map((value) {
-                  return new DropdownMenuItem <String>(
-                      value: value.toString(),
-                      child: new Text(value.toString(), overflow: TextOverflow.ellipsis,)
-                  );
-                }).toList(),
+                items: _checkChapters(),
                 onChanged: (value) => _update(1, value)
             ),
           ),

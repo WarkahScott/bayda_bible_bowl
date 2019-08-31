@@ -10,17 +10,17 @@ class RouteGenerator {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case '/':
-        return MaterialPageRoute(builder: (_) => Home());
+        return MaterialPageRoute(builder: (_) => Home(), maintainState: false);
       case '/new':
-        return MaterialPageRoute(builder: (_) => NewQuestion());
+        return MaterialPageRoute(builder: (_) => NewQuestion(), maintainState: false);
       case '/all':
-        return MaterialPageRoute(builder: (_) => AllQuestions());
+        return MaterialPageRoute(builder: (_) => AllQuestions(), maintainState: false);
       case '/prep':
-        return MaterialPageRoute(builder: (_) => Prepare());
+        return MaterialPageRoute(builder: (_) => Prepare(), maintainState: false);
       case '/study':
-        return MaterialPageRoute(builder: (_) => Study());
+        return MaterialPageRoute(builder: (_) => Study(), maintainState: false);
       case '/about':
-        return MaterialPageRoute(builder: (_) => About());
+        return MaterialPageRoute(builder: (_) => About(), maintainState: false);
       default:
         return _errorRoute();
     }

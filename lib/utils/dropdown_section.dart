@@ -21,8 +21,7 @@ class _DropdownSectionState extends State<DropdownSection> {
   String _verse = "1";
 
   List<String> get reference => <String>[_book, _chapter, _verse];
-  List<String> sample = ["Sample 1", "Sample 2","Sample 3","Sample 4"];
-  Map<String, Book> books = Bible.bookMap;
+  Map<String, Book> books = Bible.bookList;
   List<int> chapters = [1];
   List<int> verses = [1];
 

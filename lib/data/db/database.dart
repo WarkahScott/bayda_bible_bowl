@@ -34,6 +34,15 @@ class QuestionDao extends DatabaseAccessor<Database> with _$QuestionDaoMixin{
 
   Future<List<Question>> getAllQuestions() => select(questions).get();
   Stream<List<Question>> watchAllQuestions() => select(questions).watch();
+  Stream<List<Question>> watchFilteredQuestions(String book, String chapter){
+    return (
+      select(questions)
+      ..where((question){
+        final b = question.book.equals(book);
+        final c = question.chapter.equals(int.parse(chapter));
+        return and(b, c);
+      })).watch();
+  }
   Future insertQuestion(Insertable<Question> question) => into(questions).insert(question);
   Future deleteQuestion(Insertable<Question> question) => delete(questions).delete(question);
 

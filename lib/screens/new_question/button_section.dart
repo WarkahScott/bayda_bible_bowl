@@ -10,6 +10,13 @@ import 'radio_section.dart';
 
 class ButtonSection extends StatelessWidget {
 
+  bool _isValid(QuestionsCompanion question){
+    bool q = question.question.value != null && question.question.value != "";
+    bool a = question.answer.value != null && question.answer.value != "";
+
+    return q && a;
+  }
+
   @override
   Widget build(BuildContext context) {
 
@@ -35,8 +42,23 @@ class ButtonSection extends StatelessWidget {
                 verse: Value(int.parse(_dropdown.value[2])),
                 type: Value(_radio.value)
               );
-              db.insertQuestion(question);
 
+              if(_isValid(question)){
+                db.insertQuestion(question);
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Question added."),
+                    duration: Duration(seconds: 1),
+                  )
+                );
+              }
+              else
+                Scaffold.of(context).showSnackBar(
+                  SnackBar(
+                    content: Text("Question not added."),
+                    duration: Duration(seconds: 1),
+                  )
+                );
             },
           )
         ]
