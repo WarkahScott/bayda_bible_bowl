@@ -22,16 +22,18 @@ class _DropdownSectionState extends State<DropdownSection> {
 
   List<String> get reference => <String>[_book, _chapter, _verse];
   Map<String, Book> books = Bible.bookList;
-  List<int> chapters = [1];
-  List<int> verses = [1];
+  List<int> chapters = new List<int>.generate(Bible.bookList["Genesis"].chapters, (i) => i + 1);
+  List<int> verses = new List<int>.generate(Bible.bookList["Genesis"].verses[0], (i) => i + 1);
 
   _update(int field, String value){
     setState(() {
       switch(field){
         case 0: _book = value; _chapter = "1"; _verse = "1";
           chapters = new List<int>.generate(books[_book].chapters, (i) => i + 1);
+          verses = new List<int>.generate(books[_book].verses[0], (i) => i + 1);
           break;
         case 1: _chapter = value; _verse = "1";
+          verses = new List<int>.generate(books[_book].verses[int.parse(value) - 1], (i) => i + 1);
           break;
         case 2: _verse = value; break;
       }
