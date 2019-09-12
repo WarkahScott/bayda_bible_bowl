@@ -25,17 +25,26 @@ class MenuItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget>[
-        FlatButton.icon(
-          icon: Icon(_icon),
-          label: Text(_title),
-          onPressed: () => Navigator.of(context).pushReplacementNamed(_route),
-        ),
-        Divider(),
-      ],
+
+    return Container(
+      height: 70.0,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Container(
+            height: 50.0,
+            child: SizedBox.expand(
+              child: FlatButton.icon(
+                icon: Icon(_icon),
+                label: Text(_title),
+                onPressed: () => Navigator.of(context).pushReplacementNamed(_route),
+              ),
+            ),
+          ),
+          Divider(),
+        ],
+      ),
     );
   }
 }
+
