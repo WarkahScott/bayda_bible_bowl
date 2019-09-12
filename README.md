@@ -39,5 +39,5 @@ _Currently in progress_
 Created by [Warkah Scott](https://www.linkedin.com/in/warkahscott/) - feel free to contact me!
 
 ## Credits
-Credit to [Llewellyn van der Merwe](https://stackoverflow.com/cv/llewellyn) for his [Bible API](https://getbible.net/)
+Credit to [Llewellyn van der Merwe](https://stackoverflow.com/cv/llewellyn) for his [Bible API](https://getbible.net/)<br />
 Credit to [Fordyta Abubakar](https://github.com/DhytoDev) for his [Custom Dropdown Button](https://gist.github.com/DhytoDev/cdadf2e78bd694192c65b5634c2ad53e)
