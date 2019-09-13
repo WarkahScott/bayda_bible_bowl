@@ -31,7 +31,6 @@ Current features:
 
 To-do list:
 * Finish UI
-* Fix SocketException when deployed to device
 
 ## Status
 _Currently in progress_
