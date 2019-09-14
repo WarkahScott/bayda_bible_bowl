@@ -7,6 +7,7 @@ import 'answer_section.dart';
 import 'button_section.dart';
 import 'question_section.dart';
 import 'radio_section.dart';
+import 'toggle_section.dart';
 
 class NewQuestion extends StatefulWidget {
   @override
@@ -16,6 +17,7 @@ class NewQuestion extends StatefulWidget {
 class _NewQuestionState extends State<NewQuestion> {
 
   RadioSection _radio = RadioSection();
+  ToggleSection _toggle = ToggleSection();
   QuestionSection _question = QuestionSection();
   AnswerSection _answer = AnswerSection();
   DropdownSection _dropdown = DropdownSection();
@@ -33,7 +35,8 @@ class _NewQuestionState extends State<NewQuestion> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
-              _radio,
+             // _radio,
+              _toggle,
               Provider.value(
                 value: _answer,
                 child: _question,
@@ -41,6 +44,7 @@ class _NewQuestionState extends State<NewQuestion> {
               MultiProvider(
                 providers: [
                   ChangeNotifierProvider.value(value: _radio),
+                  ChangeNotifierProvider.value(value: _toggle),
                   ChangeNotifierProvider.value(value: _question),
                   ChangeNotifierProvider.value(value: _dropdown),
                 ],
@@ -50,6 +54,7 @@ class _NewQuestionState extends State<NewQuestion> {
               MultiProvider(
                 providers: [
                   ListenableProvider.value(value: _radio),
+                  ChangeNotifierProvider.value(value: _toggle),
                   ChangeNotifierProvider.value(value: _question),
                   Provider.value(value: _answer),
                   ListenableProvider.value(value: _dropdown),

@@ -12,7 +12,7 @@ Future<String> getReference(String verse) async {
         return _extractReference(response.body);
     }
   } on SocketException catch (_) {
-    return "No Connection";
+    return "-No Connection-";
   }
 
   return "Network error";

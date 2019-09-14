@@ -118,8 +118,10 @@ void _questionView(BuildContext context, Question question) {
                   FutureBuilder(
                     future: getReference(reference),
                     builder: (context, snapshot) {
-                      if(snapshot.hasData)
-                        return Text("\"${snapshot.data}", textAlign: TextAlign.center,style: TextStyle(fontSize: 20));
+                      if(snapshot.hasData) {
+                        String text = (snapshot.data == "-No Connection-") ? snapshot.data : "\"${snapshot.data}";
+                        return Text(text, textAlign: TextAlign.center,style: TextStyle(fontSize: 20));
+                      }
                       else if (snapshot.hasError)
                         return Text(snapshot.error);
 

@@ -6,7 +6,7 @@ import 'answer_substates/finish_the_verse_section.dart';
 import 'answer_substates/question_answer_section.dart';
 import 'answer_substates/reference_section.dart';
 import 'answer_substates/true_false_section.dart';
-import 'radio_section.dart';
+import 'toggle_section.dart';
 
 class AnswerSection extends StatefulWidget{
   final _state = AnswerSectionState();
@@ -39,9 +39,10 @@ class AnswerSectionState extends State<AnswerSection> {
 
   @override
   Widget build(BuildContext context) {
-    var radio = Provider.of<RadioSection>(context);
+    //var radio = Provider.of<RadioSection>(context);
+    var toggle = Provider.of<ToggleSection>(context);
 
-    switch (radio.value) {
+    switch (toggle.value) {
       case "Q/A":
         return Provider<AnswerSectionState>.value(
           value: this,

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import '../../utils/dropdown_section.dart';
 import 'answer_section.dart';
 import 'question_section.dart';
-import 'radio_section.dart';
+import 'toggle_section.dart';
 
 class ButtonSection extends StatelessWidget {
 
@@ -20,7 +20,8 @@ class ButtonSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final _radio = Provider.of<RadioSection>(context);
+    //final _radio = Provider.of<RadioSection>(context);
+    final _toggle = Provider.of<ToggleSection>(context);
     final _answer = Provider.of<AnswerSection>(context);
     final _dropdown = Provider.of<DropdownSection>(context);
     final _question = Provider.of<QuestionSection>(context);
@@ -40,7 +41,8 @@ class ButtonSection extends StatelessWidget {
                 book: Value(_dropdown.value[0]),
                 chapter: Value(int.parse(_dropdown.value[1])),
                 verse: Value(int.parse(_dropdown.value[2])),
-                type: Value(_radio.value)
+                //type: Value(_radio.value)
+                type: Value(_toggle.value)
               );
 
               if(_isValid(question)){
