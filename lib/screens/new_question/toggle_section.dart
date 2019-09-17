@@ -36,7 +36,7 @@ class _ToggleSectionState extends State<ToggleSection> {
     return Container(
       child: FittedBox(
         child: ToggleButtons(
-                children: types.map((s) => Text(s)).toList(),
+                children: types.map((s) => Text("\n$s\n", style: TextStyle(fontSize: 18))).toList(),
                 onPressed: (int index) => _changeType(index),
                 isSelected: isSelected,
         ),

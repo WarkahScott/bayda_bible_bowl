@@ -39,7 +39,6 @@ class AnswerSectionState extends State<AnswerSection> {
 
   @override
   Widget build(BuildContext context) {
-    //var radio = Provider.of<RadioSection>(context);
     var toggle = Provider.of<ToggleSection>(context);
 
     switch (toggle.value) {

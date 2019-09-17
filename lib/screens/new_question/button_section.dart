@@ -17,10 +17,22 @@ class ButtonSection extends StatelessWidget {
     return q && a;
   }
 
+  String _removeBlanks(String question, String answer, String type){
+    RegExp pattern = RegExp("[(][^)]*[)]");
+    String blank = "_______";
+
+    if(type == "FIB")
+      return question.replaceAll(pattern, blank);
+
+    if(type == "FTV")
+      return question.replaceFirst(pattern, blank);
+
+    return question;
+  }
+
   @override
   Widget build(BuildContext context) {
 
-    //final _radio = Provider.of<RadioSection>(context);
     final _toggle = Provider.of<ToggleSection>(context);
     final _answer = Provider.of<AnswerSection>(context);
     final _dropdown = Provider.of<DropdownSection>(context);
@@ -36,12 +48,11 @@ class ButtonSection extends StatelessWidget {
             onPressed: () {
               final db = Provider.of<QuestionDao>(context);
               final question = QuestionsCompanion(
-                question: Value(_question.value),
+                question: Value(_removeBlanks(_question.value, _answer.value, _toggle.value)),
                 answer: Value(_answer.value),
                 book: Value(_dropdown.value[0]),
                 chapter: Value(int.parse(_dropdown.value[1])),
                 verse: Value(int.parse(_dropdown.value[2])),
-                //type: Value(_radio.value)
                 type: Value(_toggle.value)
               );
 

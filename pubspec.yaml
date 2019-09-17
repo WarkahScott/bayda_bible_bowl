@@ -11,7 +11,7 @@ description: A BAYDA Bible Bowl study companion.
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.0.92+10
+version: 0.1.0+11
 
 environment:
   sdk: ">=2.2.0 <3.0.0"
@@ -23,6 +23,8 @@ dependencies:
   provider: ^3.0.0+1
   flutter_slidable: ^0.5.3
   http: ^0.12.0+2
+  carousel_slider: ^1.3.1
+  flip_card: ^0.4.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
