@@ -3,7 +3,7 @@ import 'package:bayda_bible_bowl/screens/all_questions_screen.dart';
 import 'package:bayda_bible_bowl/screens/home_screen.dart';
 import 'package:bayda_bible_bowl/screens/new_question/new_question_screen.dart';
 import 'package:bayda_bible_bowl/screens/prepare_screen.dart';
-import 'package:bayda_bible_bowl/screens/study_screen.dart';
+import 'package:bayda_bible_bowl/screens/study/study_screen.dart';
 import 'package:flutter/material.dart';
 
 class RouteGenerator {
